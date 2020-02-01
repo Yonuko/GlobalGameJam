@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Scene test/Thomas.unity
+    guid: 9487d3b85027080479333144b19b3b9d
+  - enabled: 1
+    path: Assets/Scenes/Scene test/PorteTest.unity
+    guid: 771953ec8a3ea5b4083ef79314e2ba02
+  - enabled: 1
+    path: Assets/Scenes/Scene test/Thomas2.unity
+    guid: d48c5d67431880140b4baca653369e91
+  - enabled: 1
+    path: Assets/Scenes/Scene test/Thomas3.unity
+    guid: 245ac58ada9c8004aacfbf96bf3de755
   m_configObjects: {}

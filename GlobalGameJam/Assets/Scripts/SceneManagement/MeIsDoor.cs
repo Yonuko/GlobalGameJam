@@ -14,21 +14,43 @@ public class MeIsDoor : MonoBehaviour
     public string nameSceneLeft;
     public string nameSceneRight;
 
+    private bool outOfTrigger = true;
+    private bool animationEnded = false;
+
     private void Start()
     {
         anim = transform.GetChild(0).GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        if(outOfTrigger  && animationEnded)
+        {
+            animationEnded = false;
+            anim.Play("SlideDownDoor");
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            LoadScene(nameSceneRight);
-            LoadScene(nameSceneLeft);
             if (Input.GetKeyDown("e"))
             {
+                LoadScene(nameSceneRight);
+                LoadScene(nameSceneLeft);
                 anim.Play("SlideUpDoor"); // && isHoldingFish
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            outOfTrigger = false;
+            LoadScene(nameSceneRight);
+            LoadScene(nameSceneLeft);
         }
     }
 
@@ -36,14 +58,19 @@ public class MeIsDoor : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (lastSeen)
-            {
-                UnloadScene(nameSceneLeft);
-            }
-            else
-            {
-                UnloadScene(nameSceneRight);
-            }
+            outOfTrigger = true;
+        }
+    }
+
+    public void ExitDoor()
+    {
+        if (lastSeen)
+        {
+            UnloadScene(nameSceneLeft);
+        }
+        else
+        {
+            UnloadScene(nameSceneRight);
         }
     }
 
@@ -62,5 +89,9 @@ public class MeIsDoor : MonoBehaviour
     public void lastSeenSetter(bool lastSeen)
     {
         this.lastSeen = lastSeen;
+    }
+    public void animSetter(bool laboule)
+    {
+        this.animationEnded = laboule;
     }
 }
