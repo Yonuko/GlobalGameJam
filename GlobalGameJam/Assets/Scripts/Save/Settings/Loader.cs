@@ -30,8 +30,10 @@ public class Loader : MonoBehaviour {
         {
             DefaultDatas();
         }
-
-        DefaultDatas();
+        else
+        {
+            Load();
+        }
     }
 	
     void DefaultDatas()
