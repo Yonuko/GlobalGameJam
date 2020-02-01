@@ -9,8 +9,8 @@ public class CameraController : MonoBehaviour {
     float targetHeight = 1.8f;                         // Vertical offset adjustment
     float distance = 12.0f;                            // Default Distance
     float offsetFromWall = 1.2f;                       // Bring camera away from any colliding objects
-    int maxDistance = 20;                       // Maximum zoom Distance
-    float minDistance = 0.3f;                      // Minimum zoom Distance
+    int maxDistance = 10;                       // Maximum zoom Distance
+    float minDistance = 2.2f;                      // Minimum zoom Distance
     public static float xSpeed = 200.0f;                          // Orbit speed (Left/Right)
     public static float ySpeed = 200.0f;                          // Orbit speed (Up/Down)
     int yMinLimit = -80;                            // Looking up limit
@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour {
     private float correctedDistance;
     private bool rotateBehind = false;
 
-    private bool StopMoving = false, logEnabled = false;
+    private bool StopMoving = false, logEnabled = false, aimingMode = false;
 
     private GameObject[] playerAffichage = { null, null, null };
 
@@ -85,7 +85,7 @@ public class CameraController : MonoBehaviour {
         // If either mouse buttons are down, let the mouse govern camera position 
         if (GUIUtility.hotControl == 0)
         { 
-            if (Input.GetMouseButton(1))
+            if ((Input.GetMouseButton(1) && !aimingMode) || (Input.GetMouseButton(0) && aimingMode))
             {
                 //Check to see if mouse input is allowed on the axis
                 if (allowMouseInputX)
@@ -168,10 +168,10 @@ public class CameraController : MonoBehaviour {
         {
             // Desactivate Player
         }
-     /*   else if (!playerAffichage[0].activeInHierarchy)
-        {
-            // Activate Player
-        }*/
+        /*   else if (!playerAffichage[0].activeInHierarchy)
+           {
+               // Activate Player
+           }*/
 
         //Finally Set rotation and position of camera
         transform.rotation = rotation;
@@ -203,5 +203,28 @@ public class CameraController : MonoBehaviour {
         if (angle > 360)
             angle -= 360;
         return Mathf.Clamp(angle, min, max);
+    }
+
+    public void SetCameraAiming(bool isAiming)
+    {
+        aimingMode = isAiming;
+        if (aimingMode)
+        {
+            minDistance = 4.0f;
+            maxDistance = 5;
+            yMinLimit = -20;
+            yMaxLimit = 20;
+        }
+        else
+        {
+            minDistance = 2.2f;
+            maxDistance = 10;
+            yMinLimit = -80;
+            yMaxLimit = 80;
+            if (desiredDistance == 0)
+            {
+                desiredDistance = 6;
+            }
+        }
     }
 }

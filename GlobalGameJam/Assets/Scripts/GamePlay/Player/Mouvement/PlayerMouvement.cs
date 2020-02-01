@@ -19,13 +19,12 @@ public class PlayerMouvement : MonoBehaviour {
     public bool jump, stopMoving;
 
     private CharacterController controller;
+    private FishThrowing fishThrowing;
 
     Animator anim;
 
     [SerializeField]
     Coroutine idleCoroutine = null;
-
-    static PlayerMouvement instance;
 
     private void Awake()
     {
@@ -35,6 +34,8 @@ public class PlayerMouvement : MonoBehaviour {
     void Start()
     {
         controller = GetComponent<CharacterController>();
+
+        fishThrowing = GetComponent<FishThrowing>();
     }
 
     void Update()
@@ -89,7 +90,7 @@ public class PlayerMouvement : MonoBehaviour {
         }
 
         // Faire en sorte que le joueur regarde dans la même direction que la caméra grâce au clique droit
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) || Input.GetMouseButton(0))
         {
             transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
         }
@@ -99,7 +100,7 @@ public class PlayerMouvement : MonoBehaviour {
         grounded = (flags & CollisionFlags.Below) != 0;
 
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) || (Input.GetMouseButton(0) && fishThrowing.hasNoFish()))
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;

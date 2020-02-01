@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu/Menu.unity
+    guid: 95c4356225cbbcd48ad005025efe5d77
+  - enabled: 1
+    path: Assets/Scenes/Menu/KeyBindingScene.unity
+    guid: 58861d24b9c0a1643aa15e5c0ac5b782
+  - enabled: 1
+    path: Assets/Scenes/Scene test/Sacha.unity
+    guid: 7576c90fad17ece47a3fb3130d39604b
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: 8636ff5bd929123419b2d3fa3ceeebe1
   m_configObjects: {}
