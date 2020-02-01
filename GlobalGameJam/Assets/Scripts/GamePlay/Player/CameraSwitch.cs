@@ -98,4 +98,9 @@ public class CameraSwitch : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         cameraChange();
     }
+
+    public bool getPlayer()
+    {
+        return !this.cameraSwitch;
+    }
 }

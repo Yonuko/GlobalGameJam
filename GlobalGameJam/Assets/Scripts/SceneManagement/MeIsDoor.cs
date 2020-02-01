@@ -27,7 +27,7 @@ public class MeIsDoor : MonoBehaviour
         if(outOfTrigger  && animationEnded)
         {
             animationEnded = false;
-            anim.Play("SlideDownDoor");
+            anim.Play("SlideDownDoorFinal");
         }
     }
 
@@ -39,7 +39,7 @@ public class MeIsDoor : MonoBehaviour
             {
                 LoadScene(nameSceneRight);
                 LoadScene(nameSceneLeft);
-                anim.Play("SlideUpDoor"); // && isHoldingFish
+                anim.Play("SlideUpDoorFinal"); // && isHoldingFish
             }
         }
     }
