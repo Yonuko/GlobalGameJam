@@ -5,7 +5,7 @@ using UnityEngine;
 public class FishThrowing : MonoBehaviour
 {
 
-    public GameObject aimingPosition, fishThrownPointPrefab;
+    public GameObject aimingPosition, fishThrownPointPrefab, Fish;
     bool hasTheFish = true, shoudRealese, aiming;
 
     GameObject targetHitObject = null;
@@ -38,15 +38,10 @@ public class FishThrowing : MonoBehaviour
                 return;
             }
             // Launch the fish
-            // temp ----
-            GameObject temp = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            temp.transform.position = aimingPosition.transform.position;
-            temp.GetComponent<Renderer>().material.color = Color.blue;
-            temp.AddComponent<FishThrownMouvement>();
-            temp.GetComponent<FishThrownMouvement>().speed = 1;
-            temp.GetComponent<FishThrownMouvement>().destination = targetHitObject.transform.position;
-            // ----
-           // hasTheFish = false;
+            GameObject go = Instantiate(Fish, aimingPosition.transform.position, transform.rotation);
+            go.GetComponent<FishThrownMouvement>().speed = 0.5f;
+            go.GetComponent<FishThrownMouvement>().destination = targetHitObject.transform.position;
+            hasTheFish = false;
         }
 
         if (aiming)
@@ -99,5 +94,13 @@ public class FishThrowing : MonoBehaviour
     public bool hasNoFish()
     {
         return hasTheFish;
+    }
+
+    public void PickUpFish()
+    {
+        if (hasNoFish())
+        {
+            hasTheFish = true;
+        }
     }
 }

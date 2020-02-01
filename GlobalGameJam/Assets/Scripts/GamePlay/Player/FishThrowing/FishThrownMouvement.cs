@@ -15,7 +15,6 @@ public class FishThrownMouvement : MonoBehaviour
 
         if (Vector3.Distance(transform.position, destination) <= 0.2f)
         {
-            Debug.Log("WUIIII");
             Destroy(this);
             return;
         }

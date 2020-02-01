@@ -23,9 +23,6 @@ public class PlayerMouvement : MonoBehaviour {
 
     Animator anim;
 
-    [SerializeField]
-    Coroutine idleCoroutine = null;
-
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6198092915766385272}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ThrowingPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,9 @@ GameObject:
   - component: {fileID: 6198092916970514434}
   - component: {fileID: 6198092916970514433}
   - component: {fileID: 6198092916970514445}
-  m_Layer: 0
+  - component: {fileID: 1202072705}
+  - component: {fileID: 1202072704}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -165,3 +167,29 @@ MonoBehaviour:
   aimingPosition: {fileID: 6198092915766385273}
   fishThrownPointPrefab: {fileID: 3436134814018698331, guid: da9dd91a3b787294593d69037c05290f,
     type: 3}
+  Fish: {fileID: 7162673728669412530, guid: 08bf56868476cdf4595bd8c4219941bd, type: 3}
+--- !u!65 &1202072705
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198092916970514435}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2.0000002, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1202072704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198092916970514435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adbcef19d1ef22e48b8d2fad875d4632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
