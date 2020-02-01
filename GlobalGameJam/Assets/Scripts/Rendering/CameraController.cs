@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
     Transform target; 							// Target to follow
-    GameObject Player;
+    public GameObject Player;
     float targetHeight = 1.8f;                         // Vertical offset adjustment
     float distance = 12.0f;                            // Default Distance
     float offsetFromWall = 1.2f;                       // Bring camera away from any colliding objects
@@ -37,6 +37,8 @@ public class CameraController : MonoBehaviour {
 
     void Start()
     {
+        DontDestroyOnLoad(this);
+
         Vector3 angles = transform.eulerAngles;
         xDeg = angles.x;
         yDeg = angles.y;
@@ -50,6 +52,8 @@ public class CameraController : MonoBehaviour {
 
         if (lockToRearOfTarget)
             rotateBehind = true;
+
+
     }
 
     void Update()
@@ -57,13 +61,13 @@ public class CameraController : MonoBehaviour {
 
         if (!target)
         {
-            target = GameObject.FindWithTag("Player").transform;
+            target = Player.transform;
         }
 
-        if (!Player)
+        /*if (!Player)
         {
             Player = GameObject.FindWithTag("Player");
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.L))
         {

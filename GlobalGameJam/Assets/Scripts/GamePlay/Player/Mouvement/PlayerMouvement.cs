@@ -39,11 +39,13 @@ public class PlayerMouvement : MonoBehaviour {
 
     void Update()
     {
-        //Ajoute la gravité
-        moveDirection.y -= gravity * Time.deltaTime;
 
         if (stopMoving)
         {
+            //Ajoute la gravité
+            moveDirection.y -= gravity * Time.deltaTime;
+            //Déplace le controller
+            controller.Move(moveDirection * Time.deltaTime);
             return;
         }
 
@@ -71,8 +73,19 @@ public class PlayerMouvement : MonoBehaviour {
                 jump = true;
                 moveDirection.y = jumpSpeed;
             }
-                    
+
         }
+        else
+        {
+            //moveDirection = new Vector3((Input.GetMouseButton(1) ? Input.GetAxis("Horizontal") : 0), moveDirection.y, Input.GetAxis("Vertical"));
+
+            /*moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection *= (isWalking || Input.GetAxis("Vertical") < 0) ? walkSpeed : runSpeed;*/
+        }
+
+
+        //Ajoute la gravité
+        moveDirection.y -= gravity * Time.deltaTime;
 
         if (Input.GetAxis("Vertical") != 0 && Input.GetAxis("Vertical") <= 0.2 && Input.GetAxis("Vertical") >= -0.2)
         {
@@ -95,7 +108,7 @@ public class PlayerMouvement : MonoBehaviour {
         }
 
         //Déplace le controller
-        var flags = controller.Move(moveDirection * Time.deltaTime);
+        CollisionFlags flags = controller.Move(moveDirection * Time.deltaTime);
         grounded = (flags & CollisionFlags.Below) != 0;
 
 
