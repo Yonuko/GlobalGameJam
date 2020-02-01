@@ -29,12 +29,7 @@ public class PlayerMouvement : MonoBehaviour {
 
     private void Awake()
     {
-        // Sigleton
-        if (instance != null)
-        {
-            Destroy(gameObject);
-        }
-        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
@@ -44,12 +39,13 @@ public class PlayerMouvement : MonoBehaviour {
 
     void Update()
     {
+        //Ajoute la gravité
+        moveDirection.y -= gravity * Time.deltaTime;
+
         if (stopMoving)
         {
             return;
         }
-
-        DontDestroyOnLoad(gameObject);
 
         Cursor.lockState = CursorLockMode.Confined;
 				
@@ -97,9 +93,6 @@ public class PlayerMouvement : MonoBehaviour {
         {
             transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
         }
-
-        //Ajoute la gravité
-        moveDirection.y -= gravity * Time.deltaTime;
 
         //Déplace le controller
         var flags = controller.Move(moveDirection * Time.deltaTime);
