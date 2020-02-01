@@ -3674,5 +3674,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 7613316483735938102, guid: 50711a588dc896b4a9e441fc18aa2f00,
+        type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50711a588dc896b4a9e441fc18aa2f00, type: 3}
