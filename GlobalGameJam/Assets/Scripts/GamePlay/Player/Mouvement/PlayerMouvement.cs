@@ -37,6 +37,8 @@ public class PlayerMouvement : MonoBehaviour {
 
         fishThrowing = GetComponent<FishThrowing>();
 
+        anim = GetComponent<Animator>();
+
         DefaultRunSpeed = runSpeed;
         DefaultWalkSpeed = walkSpeed;
     }
@@ -46,6 +48,11 @@ public class PlayerMouvement : MonoBehaviour {
 
         if (stopMoving)
         {
+            anim.SetFloat("AxisV", 0);
+            anim.SetFloat("AxisH", 0);
+            anim.SetBool("Sprint", false);
+            anim.SetBool("Jump", false);
+            moveDirection = new Vector3(0, moveDirection.y, 0);
             //Ajoute la gravité
             moveDirection.y -= gravity * Time.deltaTime;
             //Déplace le controller
@@ -54,6 +61,11 @@ public class PlayerMouvement : MonoBehaviour {
         }
 
         Cursor.lockState = CursorLockMode.Confined;
+
+        anim.SetFloat("AxisV", Input.GetAxis("Vertical"));
+        anim.SetFloat("AxisH", Input.GetAxis("Horizontal"));
+        anim.SetBool("Sprint", isRunning);
+        anim.SetBool("Jump", jump);
 
         // Permet de se déplacer que lorsque l'on se trouve sur le sol
         if (grounded)

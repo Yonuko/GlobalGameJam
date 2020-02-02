@@ -3,14 +3,18 @@ using System.Collections;
 
 public class FishMouvement : MonoBehaviour {
 
+    public GameObject waterTintPanel;
+
     public float jumpSpeed;
     public float gravity;
     public float runSpeed;
     public float walkSpeed;
     public float rotateSpeed;
 
-    public float DefaultRunSpeed;
-    public float DefaultWalkSpeed;
+    public float SwimingSpeed;
+
+    float DefaultRunSpeed;
+    float DefaultWalkSpeed;
 
     private bool grounded = false;
     private Vector3 moveDirection = Vector3.zero;
@@ -49,13 +53,23 @@ public class FishMouvement : MonoBehaviour {
 
         Cursor.lockState = CursorLockMode.Confined;
 
+        waterTintPanel.SetActive(isOnWater);
+
         // Permet de se déplacer que lorsque l'on se trouve sur le sol
-        if (grounded)
+        if (grounded && !isOnWater)
         {
+            waterTintPanel.SetActive(false);
             jump = false;
             canJump = true;
             walkSpeed = DefaultWalkSpeed;
             runSpeed = DefaultRunSpeed;
+            moveDirection = new Vector3(((Input.GetMouseButton(1) || (Input.GetMouseButton(0))) ? Input.GetAxis("Horizontal") : 0), 0, Input.GetAxis("Vertical"));
+        }
+        else if (isOnWater)
+        {
+            canJump = true;
+            walkSpeed = SwimingSpeed;
+            runSpeed = SwimingSpeed;
             moveDirection = new Vector3(((Input.GetMouseButton(1) || (Input.GetMouseButton(0))) ? Input.GetAxis("Horizontal") : 0), 0, Input.GetAxis("Vertical"));
         }
         else
@@ -83,6 +97,17 @@ public class FishMouvement : MonoBehaviour {
         {
             //Ajoute la gravité
             moveDirection.y -= gravity * Time.deltaTime;
+        }
+        else
+        {
+            if (Input.GetKey(Loader.get().datas.keys["Monter (poisson)"]))
+            {
+                moveDirection = new Vector3(moveDirection.x, 2 * jumpSpeed, moveDirection.z);
+            }
+            else if (Input.GetKey(Loader.get().datas.keys["Descendre (poisson)"]))
+            {
+                moveDirection = new Vector3(moveDirection.x, -2 * jumpSpeed, moveDirection.z);
+            }
         }
 
         if (Input.GetAxis("Vertical") != 0 && Input.GetAxis("Vertical") <= 0.2 && Input.GetAxis("Vertical") >= -0.2)
@@ -122,8 +147,21 @@ public class FishMouvement : MonoBehaviour {
         }
     }
 
-    public void IsOnWater(bool watered)
+    private void OnTriggerStay(Collider hit)
     {
-        isOnWater = watered;
+        if (hit.tag == "Water")
+        {
+            isOnWater = true;
+            Camera.main.GetComponent<CameraController>().SwimingModeEnable(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider hit)
+    {
+        if (hit.tag == "Water")
+        {
+            isOnWater = false;
+            Camera.main.GetComponent<CameraController>().SwimingModeEnable(false);
+        }
     }
 }

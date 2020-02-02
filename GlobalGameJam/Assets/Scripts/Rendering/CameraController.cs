@@ -6,14 +6,14 @@ public class CameraController : MonoBehaviour {
 
     Transform target; 							// Target to follow
     GameObject Player;
-    float targetHeight = 1.8f;                         // Vertical offset adjustment
+    float targetHeight = 2;                     // Vertical offset adjustment
     float distance = 12.0f;                            // Default Distance
     float offsetFromWall = 1.2f;                       // Bring camera away from any colliding objects
     int maxDistance = 10;                       // Maximum zoom Distance
     float minDistance = 2.2f;                      // Minimum zoom Distance
     public static float xSpeed = 200.0f;                          // Orbit speed (Left/Right)
     public static float ySpeed = 200.0f;                          // Orbit speed (Up/Down)
-    int yMinLimit = -80;                            // Looking up limit
+    int yMinLimit = -70;                            // Looking up limit
     int yMaxLimit = 80;                             // Looking down limit
     int zoomRate = 40;                          // Zoom Speed
     float rotationDampening = 3.0f;                // Auto Rotation speed (higher = faster)
@@ -29,6 +29,10 @@ public class CameraController : MonoBehaviour {
     private float desiredDistance;
     private float correctedDistance;
     private bool rotateBehind = false;
+
+    private float previousDesiredDistance;
+
+    private bool SwimingMode = false;
 
     private bool StopMoving = false, logEnabled = false, aimingMode = false;
 
@@ -52,8 +56,6 @@ public class CameraController : MonoBehaviour {
 
         if (lockToRearOfTarget)
             rotateBehind = true;
-
-
     }
 
     void Update()
@@ -84,7 +86,6 @@ public class CameraController : MonoBehaviour {
             return;
 
         Vector3 vTargetOffset;
-
 
         // If either mouse buttons are down, let the mouse govern camera position 
         if (GUIUtility.hotControl == 0)
@@ -118,7 +119,7 @@ public class CameraController : MonoBehaviour {
             RotateBehindTarget();
         }
 
-        if (!StopMoving)
+        if (!StopMoving && !SwimingMode)
         {
             // Calculate the desired distance 
             desiredDistance -= Input.GetAxis("ScrollValue") * Time.deltaTime * zoomRate * Mathf.Abs(desiredDistance);
@@ -166,16 +167,6 @@ public class CameraController : MonoBehaviour {
 
         // Recalculate position based on the new currentDistance 
         position = target.position - (rotation * Vector3.forward * currentDistance + vTargetOffset);
-
-        // Désactive l'affichage du joueur si la caméra est trop proche
-        if (currentDistance < 0.5f)
-        {
-            // Desactivate Player
-        }
-        /*   else if (!playerAffichage[0].activeInHierarchy)
-           {
-               // Activate Player
-           }*/
 
         //Finally Set rotation and position of camera
         transform.rotation = rotation;
@@ -227,7 +218,7 @@ public class CameraController : MonoBehaviour {
             yMaxLimit = 80;
             if (desiredDistance == 0)
             {
-                desiredDistance = 6;
+                desiredDistance = previousDesiredDistance;
             }
         }
     }
@@ -236,5 +227,19 @@ public class CameraController : MonoBehaviour {
     {
         Player = null;
         target = null;
+    }
+
+    public void SwimingModeEnable(bool mode)
+    {
+        SwimingMode = mode;
+        if (!SwimingMode)
+        {
+            previousDesiredDistance = desiredDistance;
+            desiredDistance = 3;
+        }
+        else
+        {
+            desiredDistance = previousDesiredDistance;
+        }
     }
 }
