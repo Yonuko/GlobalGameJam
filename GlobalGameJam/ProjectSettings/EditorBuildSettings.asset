@@ -14,4 +14,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
     guid: 8636ff5bd929123419b2d3fa3ceeebe1
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 5b26de48181f1704f8b0f05e20f698e7
+  - enabled: 1
+    path: Assets/Scenes/Animated/Door.unity
+    guid: 6c7576b70dfc13c4db6283facb72d180
+  - enabled: 0
+    path: Assets/Scenes/MainScene.unity
+    guid: db32323f30a109a449f749a8710098b5
+  - enabled: 1
+    path: Assets/Scenes/Animated/Door2.unity
+    guid: 008bbe38687160540ba8644d477ef2d8
   m_configObjects: {}
