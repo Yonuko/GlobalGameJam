@@ -190,12 +190,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60dad1dcdc53e4c418a2b748ce69df1f, type: 3}
---- !u!1 &1381464388 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6198092916970514435, guid: 135bc8d2a32678544852a9087ec32a53,
-    type: 3}
-  m_PrefabInstance: {fileID: 1383130102}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1383130102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -431,7 +425,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa4732940a62ea4a8f28b34bbae7921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1381464388}
 --- !u!81 &1923958266
 AudioListener:
   m_ObjectHideFlags: 0
@@ -526,13 +519,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82abb2bc7f9d1bd4285631de9a223d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraOne: {fileID: 2022500894}
-  cameraTwo: {fileID: 1923958264}
   switchTransitionUI: {fileID: 1688869267}
-  playerOne: {fileID: 1381464388}
-  playerTwo: {fileID: 0}
+  player: {fileID: 0}
+  saulmon: {fileID: 0}
   holdTime: 1
-  isFishHome: 0
 --- !u!4 &2018530065
 Transform:
   m_ObjectHideFlags: 0
@@ -643,7 +633,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa4732940a62ea4a8f28b34bbae7921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1381464388}
 --- !u!1 &2110974405
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,3 +725,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &2114858023 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2269548472670247595, guid: 60dad1dcdc53e4c418a2b748ce69df1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 841988502}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2114858024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114858023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043b9b3dfb1c75b4787bacc59f52bf08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

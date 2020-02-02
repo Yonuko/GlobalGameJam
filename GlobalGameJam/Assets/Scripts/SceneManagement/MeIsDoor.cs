@@ -38,7 +38,7 @@ public class MeIsDoor : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (Input.GetKeyDown("e") && isOpenable)
+            if (Input.GetKeyDown(Loader.get().datas.keys["Action"]) && isOpenable)
             {
                 LoadScene(nameSceneRight);
                 LoadScene(nameSceneLeft);
