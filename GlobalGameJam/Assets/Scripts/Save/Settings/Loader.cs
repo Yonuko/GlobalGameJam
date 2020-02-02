@@ -42,7 +42,8 @@ public class Loader : MonoBehaviour {
         datas.keys["Escape"] = KeyCode.Escape;
         datas.keys["Sprint"] = KeyCode.LeftShift;
         datas.keys["Action"] = KeyCode.E;
-        datas.keys[""] = KeyCode.A;
+        datas.keys["Monter (poisson)"] = KeyCode.Space;
+        datas.keys["Descendre (poisson)"] = KeyCode.LeftShift;
 
         DataManager.Save(datas, saveFileName);
         Load();

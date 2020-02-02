@@ -12,6 +12,13 @@ public class FishThrowing : MonoBehaviour
 
     Coroutine AlreadyAimed = null;
 
+    Animator anim;
+    
+    private void Start()
+    {
+        anim = GetComponent<Animator>();    
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -33,7 +40,7 @@ public class FishThrowing : MonoBehaviour
             }
             // Launch the fish
             GameObject go = Instantiate(Fish, aimingPosition.transform.position, transform.rotation);
-            go.GetComponent<FishThrownMouvement>().speed = 0.5f;
+            go.GetComponent<FishThrownMouvement>().speed = 0.7f;
             go.GetComponent<FishThrownMouvement>().destination = targetHitObject.transform.position;
             go.GetComponent<Animator>().Play("Fly", 0, 0);
             GameObject.Find("GameController").GetComponent<CameraSwitch>().saulmon = go;
@@ -46,6 +53,7 @@ public class FishThrowing : MonoBehaviour
             {
                 targetHitObject = Instantiate(fishThrownPointPrefab);
             }
+            anim.Play("Throw", 0, 0.274f);
             Camera mainCamera = Camera.main;
             mainCamera.GetComponent<CameraController>().SetCameraAiming(true);
             mainCamera.fieldOfView = 45;
@@ -56,9 +64,9 @@ public class FishThrowing : MonoBehaviour
             {
                 targetHitObject.transform.position = new Vector3(hit.point.x, hit.point.y, hit.point.z - 2);
                 targetHitObject.transform.LookAt(hit.normal);
-                float angleCorrection = Vector3.Angle(-targetHitObject.transform.rotation.eulerAngles, hit.point);
+             /*   float angleCorrection = Vector3.Angle(-targetHitObject.transform.rotation.eulerAngles, hit.point);
                 Quaternion targetHitRotation = targetHitObject.transform.rotation;
-                targetHitObject.transform.rotation = Quaternion.Euler(targetHitRotation.x + angleCorrection, targetHitRotation.y, targetHitRotation.z);
+                targetHitObject.transform.rotation = Quaternion.Euler(targetHitRotation.x + angleCorrection, targetHitRotation.y, targetHitRotation.z);*/
             }
         }
         else
