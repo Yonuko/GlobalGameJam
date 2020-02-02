@@ -60,12 +60,12 @@ public class FishThrowing : MonoBehaviour
             {
                 targetHitObject.transform.position = new Vector3(hit.point.x, hit.point.y, hit.point.z - 2);
                 targetHitObject.transform.LookAt(hit.normal);
-        /*        float angleCorrection = Vector3.Angle(-targetHitObject.transform.rotation.eulerAngles, hit.point);
+                float angleCorrection = Vector3.Angle(-targetHitObject.transform.rotation.eulerAngles, hit.point);
                 Quaternion targetHitRotation = targetHitObject.transform.rotation;
                 targetHitObject.transform.rotation = Quaternion.Euler(targetHitRotation.x + angleCorrection, targetHitRotation.y, targetHitRotation.z);
                 Debug.DrawRay(hit.point, hit.transform.forward, Color.blue);
                 Debug.DrawRay(hit.point, hit.transform.up, Color.green);
-                Debug.DrawRay(hit.point, hit.transform.right, Color.red);*/
+                Debug.DrawRay(hit.point, hit.transform.right, Color.red);
             }
         }
         else
@@ -91,6 +91,11 @@ public class FishThrowing : MonoBehaviour
         AlreadyAimed = null;
     }
 
+    public bool isAiming()
+    {
+        return aiming;
+    }
+
     public bool hasNoFish()
     {
         return hasTheFish;
@@ -98,7 +103,7 @@ public class FishThrowing : MonoBehaviour
 
     public void PickUpFish()
     {
-        if (hasNoFish())
+        if (!hasNoFish())
         {
             hasTheFish = true;
         }
