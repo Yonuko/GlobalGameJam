@@ -534,9 +534,10 @@ GameObject:
   - component: {fileID: 1172907159580816825}
   - component: {fileID: -1294573826465892676}
   - component: {fileID: 4767894397276465886}
+  - component: {fileID: 4480935743611360370}
   m_Layer: 0
   m_Name: Saumon
-  m_TagString: Fish
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -606,6 +607,24 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.035, y: 0.05, z: 0.09}
+  m_Center: {x: 0, y: 0.02, z: 0}
+--- !u!143 &4480935743611360370
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162673728669412530}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 0
+  m_Radius: 0.02
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.02, z: 0}
 --- !u!1 &7258680502518946720
 GameObject:

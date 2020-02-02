@@ -9,6 +9,9 @@ public class PlayerMouvement : MonoBehaviour {
     public float walkSpeed;
     public float rotateSpeed;
 
+    public float DefaultRunSpeed;
+    public float DefaultWalkSpeed;
+
     private bool grounded = false;
     private Vector3 moveDirection = Vector3.zero;
 	private bool isWalking = true;
@@ -33,6 +36,9 @@ public class PlayerMouvement : MonoBehaviour {
         controller = GetComponent<CharacterController>();
 
         fishThrowing = GetComponent<FishThrowing>();
+
+        DefaultRunSpeed = runSpeed;
+        DefaultWalkSpeed = walkSpeed;
     }
 
     void Update()
@@ -48,39 +54,36 @@ public class PlayerMouvement : MonoBehaviour {
         }
 
         Cursor.lockState = CursorLockMode.Confined;
-				
+
         // Permet de se déplacer que lorsque l'on se trouve sur le sol
         if (grounded)
         {
-
             jump = false;
-
-            moveDirection = new Vector3((Input.GetMouseButton(1) ? Input.GetAxis("Horizontal") : 0), 0, Input.GetAxis("Vertical"));
-
-            if (Input.GetKeyDown(GameObject.FindWithTag("Loader").GetComponent<Loader>().datas.keys["Sprint"]))
-            {
-                isWalking = !isWalking;
-                isRunning = !isRunning;
-            }
-
-            moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection *= (isWalking || Input.GetAxis("Vertical") < 0) ? walkSpeed : runSpeed;
-
-            if (Input.GetKeyDown(GameObject.FindWithTag("Loader").GetComponent<Loader>().datas.keys["Jump"]) && canJump)
-            {
-                jump = true;
-                moveDirection.y = jumpSpeed;
-            }
-
+            canJump = true;
+            walkSpeed = DefaultWalkSpeed;
+            runSpeed = DefaultRunSpeed;
+            moveDirection = new Vector3(((Input.GetMouseButton(1) || (Input.GetMouseButton(0) && fishThrowing.isAiming())) ? Input.GetAxis("Horizontal") : 0), 0, Input.GetAxis("Vertical"));
         }
         else
         {
-            //moveDirection = new Vector3((Input.GetMouseButton(1) ? Input.GetAxis("Horizontal") : 0), moveDirection.y, Input.GetAxis("Vertical"));
-
-            /*moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection *= (isWalking || Input.GetAxis("Vertical") < 0) ? walkSpeed : runSpeed;*/
+            canJump = false;
+            moveDirection = new Vector3(0, moveDirection.y / (isWalking || Input.GetAxis("Vertical") < 0 ? walkSpeed : runSpeed), Input.GetAxis("Vertical"));
         }
 
+        if (Input.GetKeyDown(GameObject.FindWithTag("Loader").GetComponent<Loader>().datas.keys["Sprint"]))
+        {
+            isWalking = !isWalking;
+            isRunning = !isRunning;
+        }
+
+        moveDirection = transform.TransformDirection(moveDirection);
+        moveDirection *= (isWalking || Input.GetAxis("Vertical") < 0) ? walkSpeed : runSpeed;
+
+        if (Input.GetKeyDown(Loader.get().datas.keys["Jump"]) && canJump)
+        {
+            jump = true;
+            moveDirection.y = jumpSpeed;
+        }
 
         //Ajoute la gravité
         moveDirection.y -= gravity * Time.deltaTime;
