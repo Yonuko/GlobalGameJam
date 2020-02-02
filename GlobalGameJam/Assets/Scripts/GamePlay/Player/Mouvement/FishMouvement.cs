@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class FishMouvement : MonoBehaviour {
 
-    public GameObject waterTintPanel;
+    public Image waterTintPanel;
 
     public float jumpSpeed;
     public float gravity;
@@ -25,7 +26,7 @@ public class FishMouvement : MonoBehaviour {
 
     public bool jump, stopMoving;
 
-    bool isOnWater;
+    public bool isOnWater;
 
     private CharacterController controller;
 
@@ -40,6 +41,8 @@ public class FishMouvement : MonoBehaviour {
     {
         controller = GetComponent<CharacterController>();
 
+        waterTintPanel = GameObject.Find("WaterTint").GetComponent<Image>();
+
         DefaultRunSpeed = runSpeed;
         DefaultWalkSpeed = walkSpeed;
     }
@@ -53,12 +56,12 @@ public class FishMouvement : MonoBehaviour {
 
         Cursor.lockState = CursorLockMode.Confined;
 
-        waterTintPanel.SetActive(isOnWater);
+        waterTintPanel.enabled = isOnWater;
 
         // Permet de se déplacer que lorsque l'on se trouve sur le sol
         if (grounded && !isOnWater)
         {
-            waterTintPanel.SetActive(false);
+            waterTintPanel.enabled = false;
             jump = false;
             canJump = true;
             walkSpeed = DefaultWalkSpeed;
