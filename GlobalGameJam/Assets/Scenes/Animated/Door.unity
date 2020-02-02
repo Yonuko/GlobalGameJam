@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d588a61b10674464bba05d96b7aecbfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameSceneLeft: Thomas3
+  nameSceneLeft: Lobby
   nameSceneRight: Thomas2
 --- !u!1 &1545150482
 GameObject:

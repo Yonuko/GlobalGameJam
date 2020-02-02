@@ -14,6 +14,9 @@ public class MeIsDoor : MonoBehaviour
     public string nameSceneLeft;
     public string nameSceneRight;
 
+    public bool isOpenable = true;
+    public bool ignoreLoader = true;
+
     private bool outOfTrigger = true;
     private bool animationEnded = false;
 
@@ -35,7 +38,7 @@ public class MeIsDoor : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (Input.GetKeyDown("e"))
+            if (Input.GetKeyDown("e") && isOpenable)
             {
                 LoadScene(nameSceneRight);
                 LoadScene(nameSceneLeft);
@@ -76,14 +79,20 @@ public class MeIsDoor : MonoBehaviour
 
     private void LoadScene(string sceneName)
     {
-        if (!SceneManager.GetSceneByName(sceneName).isLoaded)
-            SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        if (!this.ignoreLoader)
+        {
+            if (!SceneManager.GetSceneByName(sceneName).isLoaded)
+                SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        }
     }
 
     private void UnloadScene(string sceneName)
     {
-        if (SceneManager.GetSceneByName(sceneName).isLoaded)
-            SceneManager.UnloadSceneAsync(sceneName);
+        if (!this.ignoreLoader)
+        {
+            if (SceneManager.GetSceneByName(sceneName).isLoaded)
+                SceneManager.UnloadSceneAsync(sceneName);
+        }
     }
 
     public void lastSeenSetter(bool lastSeen)
