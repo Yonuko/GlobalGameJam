@@ -183,7 +183,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameSceneLeft: 
   nameSceneRight: 
-  isOpenable: 0
+  isOpenable: 1
+  ignoreLoader: 1
 --- !u!1 &1545150482
 GameObject:
   m_ObjectHideFlags: 0

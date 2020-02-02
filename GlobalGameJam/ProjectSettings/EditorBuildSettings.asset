@@ -9,18 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu/Menu.unity
     guid: 95c4356225cbbcd48ad005025efe5d77
   - enabled: 1
-    path: Assets/Scenes/Main.unity
-    guid: 5b26de48181f1704f8b0f05e20f698e7
-  - enabled: 1
-    path: Assets/Scenes/Animated/Door2.unity
-    guid: 008bbe38687160540ba8644d477ef2d8
-  - enabled: 1
-    path: Assets/Scenes/Animated/Door.unity
-    guid: 6c7576b70dfc13c4db6283facb72d180
+    path: Assets/Scenes/Menu/KeyBindingScene.unity
+    guid: 58861d24b9c0a1643aa15e5c0ac5b782
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
     guid: 8636ff5bd929123419b2d3fa3ceeebe1
-  - enabled: 1
-    path: Assets/Scenes/Menu/KeyBindingScene.unity
-    guid: 58861d24b9c0a1643aa15e5c0ac5b782
   m_configObjects: {}
