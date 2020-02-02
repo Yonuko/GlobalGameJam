@@ -12,12 +12,6 @@ public class FishThrowing : MonoBehaviour
 
     Coroutine AlreadyAimed = null;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -41,6 +35,8 @@ public class FishThrowing : MonoBehaviour
             GameObject go = Instantiate(Fish, aimingPosition.transform.position, transform.rotation);
             go.GetComponent<FishThrownMouvement>().speed = 0.5f;
             go.GetComponent<FishThrownMouvement>().destination = targetHitObject.transform.position;
+            go.GetComponent<Animator>().Play("Fly", 0, 0);
+            GameObject.Find("GameController").GetComponent<CameraSwitch>().saulmon = go;
             hasTheFish = false;
         }
 
@@ -63,9 +59,6 @@ public class FishThrowing : MonoBehaviour
                 float angleCorrection = Vector3.Angle(-targetHitObject.transform.rotation.eulerAngles, hit.point);
                 Quaternion targetHitRotation = targetHitObject.transform.rotation;
                 targetHitObject.transform.rotation = Quaternion.Euler(targetHitRotation.x + angleCorrection, targetHitRotation.y, targetHitRotation.z);
-                Debug.DrawRay(hit.point, hit.transform.forward, Color.blue);
-                Debug.DrawRay(hit.point, hit.transform.up, Color.green);
-                Debug.DrawRay(hit.point, hit.transform.right, Color.red);
             }
         }
         else

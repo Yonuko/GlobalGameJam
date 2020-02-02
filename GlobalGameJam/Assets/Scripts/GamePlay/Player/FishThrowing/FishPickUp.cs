@@ -9,6 +9,7 @@ public class FishPickUp : MonoBehaviour
         if (hit.tag == "Fish")
         {
             GetComponent<FishThrowing>().PickUpFish();
+            GameObject.Find("GameController").GetComponent<CameraSwitch>().FishCameBack(true);
             Destroy(hit.gameObject);
         }        
     }

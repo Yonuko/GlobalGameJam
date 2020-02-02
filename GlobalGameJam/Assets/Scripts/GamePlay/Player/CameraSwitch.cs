@@ -4,45 +4,38 @@ using UnityEngine;
 
 public class CameraSwitch : MonoBehaviour
 {
-    public GameObject cameraOne;
-    public GameObject cameraTwo;
     public GameObject switchTransitionUI;
 
-    public GameObject playerOne;
-    public GameObject playerTwo;
+    public GameObject player;
+    public GameObject saulmon;
 
-    AudioListener audioOne;
-    AudioListener audioTwo;
+    Camera mainCamera;
 
     private float startTime = 0f;
-    public float holdTime = 1.0f;       // Temps en seconde à tenir pour faire le switch de camera
+    public float holdTime = 0.2f;       // Temps en seconde à tenir pour faire le switch de camera
 
-    private bool cameraSwitch = false;
-    public bool isFishHome = false;     // Si true, le poisson est dans la main du perso et la camera ne peut pas switch
+    private bool cameraSwitch = true, isFishHome = true;
 
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(this);
 
-        audioOne = cameraOne.GetComponent<AudioListener>();
-        audioTwo = cameraTwo.GetComponent<AudioListener>();
+        player = GameObject.FindWithTag("Player");
 
-        audioTwo.enabled = false;
-        cameraTwo.GetComponent<Camera>().enabled = false;
-        playerTwo.GetComponent<PlayerMouvement>().stopMoving = true;
+        mainCamera = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && !isFishHome){
-            startTime = Time.time;
+            startTime = Time.deltaTime;
         }
 
         if (Input.GetMouseButton(0) && !isFishHome) // Changement de cam
         {
-            if (startTime + holdTime <= Time.time)
+            if (startTime <= holdTime)
             {
 
                 switchTransitionUI.GetComponent<Animator>().Play("FadeIn", 0, 0);
@@ -60,37 +53,20 @@ public class CameraSwitch : MonoBehaviour
 
     private void cameraChange()
     {
+        // Poisson
+        saulmon.GetComponent<FishMouvement>().enabled = cameraSwitch;
+     //   saulmon.GetComponent<PlayerMouvement>().stopMoving = !cameraSwitch;
+        // Player
+        player.GetComponent<PlayerMouvement>().stopMoving = cameraSwitch;
+        // Assigne les tag en fonction du personnage que l'on joue
+        player.tag = (cameraSwitch) ? "Untagged" : "Player";
+        saulmon.tag = (cameraSwitch) ? "Player" : "Fish";
+        Camera.main.GetComponent<CameraController>().ChangePlayer();
         if (cameraSwitch)
         {
-            audioTwo.enabled = false;
-            cameraTwo.GetComponent<Camera>().enabled = false;
-            playerTwo.GetComponent<PlayerMouvement>().stopMoving = true;
-
-            audioOne.enabled = true;
-            cameraOne.GetComponent<Camera>().enabled = true;
-            playerOne.GetComponent<PlayerMouvement>().stopMoving = false;
-
-            //playerTwo.tag = "Untagged";
-            //playerOne.tag = "Player";
-            
-
-            cameraSwitch = false;
+            saulmon.GetComponent<Animator>().Play("Nage", 0, 0);
         }
-        else
-        {
-            audioTwo.enabled = true;
-            cameraTwo.GetComponent<Camera>().enabled = true;
-            playerTwo.GetComponent<PlayerMouvement>().stopMoving = false;
-
-            audioOne.enabled = false;
-            cameraOne.GetComponent<Camera>().enabled = false;
-            playerOne.GetComponent<PlayerMouvement>().stopMoving = true;
-
-            //playerOne.tag = "Untagged";
-            //playerTwo.tag = "Player";
-
-            cameraSwitch = true;
-        }
+        cameraSwitch = !cameraSwitch;
     }
 
     IEnumerator delaySwitch()
@@ -99,8 +75,13 @@ public class CameraSwitch : MonoBehaviour
         cameraChange();
     }
 
-    public bool getPlayer()
+    public bool amIThePlayer()
     {
         return !this.cameraSwitch;
+    }
+
+    public void FishCameBack(bool isHeHome)
+    {
+        isFishHome = isHeHome;
     }
 }

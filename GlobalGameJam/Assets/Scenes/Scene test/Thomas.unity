@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -473,13 +473,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82abb2bc7f9d1bd4285631de9a223d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraOne: {fileID: 519129819}
-  cameraTwo: {fileID: 177423584}
   switchTransitionUI: {fileID: 126794692}
-  playerOne: {fileID: 1107181595}
-  playerTwo: {fileID: 1085142917}
+  player: {fileID: 0}
+  saulmon: {fileID: 0}
   holdTime: 2
-  isFishHome: 0
 --- !u!4 &154717863
 Transform:
   m_ObjectHideFlags: 0
@@ -590,7 +587,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa4732940a62ea4a8f28b34bbae7921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1085142917}
 --- !u!1 &242552544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,7 +1084,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa4732940a62ea4a8f28b34bbae7921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1107181595}
 --- !u!1 &629177021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1675,6 +1670,8 @@ MonoBehaviour:
   runSpeed: 2
   walkSpeed: 2
   rotateSpeed: 60
+  DefaultRunSpeed: 0
+  DefaultWalkSpeed: 0
   jump: 0
   stopMoving: 0
 --- !u!143 &1085142923
@@ -1939,6 +1936,8 @@ MonoBehaviour:
   runSpeed: 10
   walkSpeed: 6
   rotateSpeed: 100
+  DefaultRunSpeed: 0
+  DefaultWalkSpeed: 0
   jump: 1
   stopMoving: 0
 --- !u!114 &1107181602

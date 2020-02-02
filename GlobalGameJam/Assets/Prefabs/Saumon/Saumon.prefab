@@ -535,6 +535,7 @@ GameObject:
   - component: {fileID: -1294573826465892676}
   - component: {fileID: 4767894397276465886}
   - component: {fileID: 4480935743611360370}
+  - component: {fileID: -3575098357343158289}
   m_Layer: 0
   m_Name: Saumon
   m_TagString: Untagged
@@ -626,6 +627,27 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.02, z: 0}
+--- !u!114 &-3575098357343158289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162673728669412530}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67a3d4c30de0e9f439b72d8ac36755ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpSpeed: 2
+  gravity: 10
+  runSpeed: 5
+  walkSpeed: 2
+  rotateSpeed: 80
+  DefaultRunSpeed: 0
+  DefaultWalkSpeed: 0
+  jump: 0
+  stopMoving: 0
 --- !u!1 &7258680502518946720
 GameObject:
   m_ObjectHideFlags: 0
