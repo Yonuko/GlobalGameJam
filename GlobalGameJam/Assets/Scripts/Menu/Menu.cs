@@ -7,7 +7,7 @@ public class Menu : MonoBehaviour
 {
     public void LauncheGame()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("Main");
     }
 
     public void Option()

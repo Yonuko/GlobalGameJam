@@ -7,6 +7,7 @@ TagManager:
   - Loader
   - PlateformeCassable
   - Fish
+  - TeleporterEnd
   - Water
   layers:
   - Default
