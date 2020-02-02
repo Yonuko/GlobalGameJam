@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraSwitch : MonoBehaviour
 {
@@ -55,7 +56,10 @@ public class CameraSwitch : MonoBehaviour
     {
         // Poisson
         saulmon.GetComponent<FishMouvement>().enabled = cameraSwitch;
-     //   saulmon.GetComponent<PlayerMouvement>().stopMoving = !cameraSwitch;
+        if (saulmon.GetComponent<FishMouvement>().isOnWater && !cameraSwitch)
+        {
+            GameObject.Find("WaterTint").GetComponent<Image>().enabled = false;
+        }
         // Player
         player.GetComponent<PlayerMouvement>().stopMoving = cameraSwitch;
         // Assigne les tag en fonction du personnage que l'on joue

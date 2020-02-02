@@ -645,29 +645,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -3575098357343158289, guid: 08bf56868476cdf4595bd8c4219941bd,
         type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -3575098357343158289, guid: 08bf56868476cdf4595bd8c4219941bd,
-        type: 3}
-      propertyPath: runSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -3575098357343158289, guid: 08bf56868476cdf4595bd8c4219941bd,
-        type: 3}
-      propertyPath: SwimingSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: -3575098357343158289, guid: 08bf56868476cdf4595bd8c4219941bd,
-        type: 3}
       propertyPath: waterTintPanel
       value: 
       objectReference: {fileID: 2068668522}
-    - target: {fileID: -1294573826465892676, guid: 08bf56868476cdf4595bd8c4219941bd,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6142263475143581345, guid: 08bf56868476cdf4595bd8c4219941bd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -727,11 +707,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Saumon
-      objectReference: {fileID: 0}
-    - target: {fileID: 7162673728669412530, guid: 08bf56868476cdf4595bd8c4219941bd,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08bf56868476cdf4595bd8c4219941bd, type: 3}
